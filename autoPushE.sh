@@ -42,14 +42,17 @@ then
             if [ $c -eq $2 ]
             then
                 # echo "Are you sure delete entry " $line
-                # read -p "Are you sure delete entry  $line  (y/n)?" -n 1 -r
-                echo $line
-                echo "\"$line\"d"
+                read -p "Are you sure delete entry  $line  (y/n)?" o </dev/tty
+                echo $o
+                if [[ $o == 'y' ||  $o == 'Y' ]]
+                then
+                # echo $line
+                # echo "\"$line\"d"
                 
                 # sed "\"$line\"d" < autoPush.config
-                sed -i "s#$line##" autoPush.config
-                sed -i '/^$/d' autoPush.config
-
+                    sed -i "s#$line##" autoPush.config
+                    sed -i '/^$/d' autoPush.config
+                fi
                 # if [ $o == 'y' ]
                 # then
                 #     echo '"${line}"d'
