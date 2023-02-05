@@ -17,11 +17,12 @@ then
             cd $path && $gitPath commit -m "$com_msg"
             cd $path && $gitPath push
             date >> $path/autopush.log
-            echo $(date) ":: Pushed $path" >> autopush.log
+            echo $(date) ":: Pushed $path" >> autoPush.log
         fi
     done < "$dataFile"
     exit
 fi
+
 
 
 if [[ $1 == 'l' || $1 == "-l" ]]
@@ -47,7 +48,6 @@ then
 
 
 
-
 elif [[ $1 == 'd' || $1 == "-d" ]]
 then 
     if [ -n "$2" ]
@@ -62,27 +62,15 @@ then
             c=$(($c+1))
             if [ $c -eq $2 ]
             then
-                # echo "Are you sure delete entry " $line
                 read -p "Are you sure delete entry  $line  (y/n)?" o </dev/tty
                 echo $o
                 if [[ $o == 'y' ||  $o == 'Y' ]]
                 then
-                # echo $line
-                # echo "\"$line\"d"
-                
-                # sed "\"$line\"d" < autoPush.config
                     sed -i "s#$line##" $dataFile
                     sed -i '/^$/d' $dataFile
                 fi
-                # if [ $o == 'y' ]
-                # then
-                #     echo '"${line}"d'
-                # fi
             fi
-
-            # echo $c $line
         fi
     done < $dataFile
     fi
-
 fi
