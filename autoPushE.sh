@@ -3,6 +3,13 @@ input="./autoPush.config"
 
 echo $1
 
+if [ $# -eq 0 ]
+then 
+    echo "Usage: autoPushE.sh [l|a|d] [n]"
+    exit
+fi
+
+
 if [ $1 == 'l' ]
 then
     echo $1
@@ -16,18 +23,18 @@ then
             echo $c $line
          fi
     done < $input
-fi
 
-if [ $1 == 'a' ]
+
+elif [ $1 == 'a' ]
 then
     read -p "Enter path: " -r path
     read -p "Commit message: " -r msg
     echo $path '"'$msg'"' >> $input
-fi
 
 
 
-if [ $1 == 'd' ]
+
+elif [ $1 == 'd' ]
 then 
     if [ -n "$2" ]
     then
