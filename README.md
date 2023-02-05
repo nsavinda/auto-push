@@ -1,4 +1,4 @@
-# Readme for autoPush Bash Script
+# Git autoPush
 
 This bash script allows you to automatically push repositories.
 
